@@ -8,3 +8,18 @@ do
         code=$(($(($sc1 + $increment)) % 19))
         echo "$c. codeN11$code.c"
 done
+
+sc2=$(( $nuid % 3))
+echo -e "Your Part 4 Program is:"
+if [[ $sc2 -eq 0 ]]
+then
+echo "Buffer Overflow"
+fi
+if [[ $sc2 -eq 1 ]]
+then
+echo "Undefined Behavior"
+fi
+if [[ $sc2 -eq 2 ]]
+then
+echo "Memory Leak"
+fi

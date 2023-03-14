@@ -9,12 +9,13 @@ Your job is to write a LLVM pass to instrument this code **RIGHT BEFORE** it exe
 
 There are a few assumptions to make your life easier.
 1. Both `dest_str` and `src_buf` are properly '\0' terminated, so to check their length, you only need to call `strlen` on them.  Just imagine, if this was a `memcpy`, it will be much harder. 
-2. The starter code of this magnificant buffer overflow sanitizer is under ```pass/bofsan```.
+2. The starter code of this magnificent buffer overflow sanitizer is under ```pass/bofsan```.
 
 
 ## Steps
 - After finishing the bofsan.cpp, create a `build` folder alongside the `CMakeList.txt` file.
 - `cd build`
+- `cmake ..`
 - `make`
     - check if this `LLVM pass` is compiled properly
 - cd back here to this folder.

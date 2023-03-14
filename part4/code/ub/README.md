@@ -15,6 +15,7 @@ In this experiment, you need to use llvm to iterate through all addition operati
 ## Steps
 - After finishing the ubsan.cpp, create a `build` folder alongside the `CMakeList.txt` file.
 - `cd build`
+- `cmake ..`
 - `make`
     - check if this `LLVM pass` is compiled properly
 - cd back here to this folder.

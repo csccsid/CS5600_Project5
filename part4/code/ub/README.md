@@ -13,6 +13,7 @@ In this experiment, you need to use llvm to iterate through all addition operati
 - If not, print accordingly and go on executing the addition operation. 
 
 ## Steps
+- Modify Makefile here and CMakeLists.txt under ubsan, to point to your unzipped llvm-12 toolchain
 - After finishing the ubsan.cpp, create a `build` folder alongside the `CMakeList.txt` file.
 - `cd build`
 - `cmake ..`

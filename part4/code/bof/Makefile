@@ -1,6 +1,6 @@
 PROJ_DIR := $(abspath .)
 LLVM_PASS_PATH := $(PROJ_DIR)/../../pass/bofsan/build/libbofsan.so
-LLVM_BIN_PATH := /home/lcm/github/toolchains/x86_64/clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04/bin
+LLVM_BIN_PATH := <your llvm toolchain dir here>/bin
 GCC_PATH := gcc
 
 all: instrumented_bof

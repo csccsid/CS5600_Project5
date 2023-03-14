@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.0)
 project(BofSanPasses)
-set(llvm_hints "/home/lcm/github/toolchains/x86_64/clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04/lib/cmake")
+set(llvm_hints "<your llvm toolchain dir here>/lib/cmake")
 
 find_package(LLVM REQUIRED CONFIG HINTS ${llvm_hints})
 

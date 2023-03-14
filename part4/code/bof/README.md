@@ -13,6 +13,7 @@ There are a few assumptions to make your life easier.
 
 
 ## Steps
+- Modify Makefile here and CMakeLists.txt under bofsan, to point to your unzipped llvm-12 toolchain
 - After finishing the bofsan.cpp, create a `build` folder alongside the `CMakeList.txt` file.
 - `cd build`
 - `cmake ..`

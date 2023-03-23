@@ -6,6 +6,7 @@ for (( c=1; c<10; c++ ))
 do
         increment=$(( $c))
         code=$(($(($sc1 + $increment)) % 19))
+        code=$(printf %02d $code)
         echo "$c. codeN11$code.c"
 done
 

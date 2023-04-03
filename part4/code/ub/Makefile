@@ -7,7 +7,7 @@ all: instrumented_ub
 instrumented_ub: ub.c
 	$(LLVM_BIN_PATH)/clang  -g  -emit-llvm ./ub.c -c -o ./ub.bc
 	$(LLVM_BIN_PATH)/opt -load $(LLVM_PASS_PATH) -ubsan -o instrumented_ub.bc ub.bc
-	llc -filetype=obj instrumented_ub.bc -o instrumented_ub.o
+	$(LLVM_BIN_PATH)/llc -filetype=obj instrumented_ub.bc -o instrumented_ub.o
 	gcc instrumented_ub.o -no-pie -o instrumented_ub
 
 normal: ub.c

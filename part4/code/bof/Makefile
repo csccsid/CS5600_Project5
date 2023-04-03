@@ -8,7 +8,7 @@ SRC_LEN_ := $(SRC_LEN)
 instrumented_bof: bof.c
 	$(LLVM_BIN_PATH)/clang -DSRC_LEN=$(SRC_LEN_) -g  -emit-llvm ./bof.c -c -o ./bof.bc
 	$(LLVM_BIN_PATH)/opt -load $(LLVM_PASS_PATH) -bofsan -o instrumented_bof.bc bof.bc
-	llc -filetype=obj instrumented_bof.bc -o instrumented_bof.o
+	$(LLVM_BIN_PATH)/llc -filetype=obj instrumented_bof.bc -o instrumented_bof.o
 	gcc instrumented_bof.o -no-pie -o instrumented_bof
 
 normal: bof.c

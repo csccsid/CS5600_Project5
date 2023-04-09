@@ -1,4 +1,17 @@
 #!/bin/bash
+# validate nuid using =~. 
+#the nuid is supposed to be 9-digit number starting with double 0
+if [[ ! $1 =~ ^00[0-9]{7}$ ]]; then
+    echo "Invalid nuid" 
+    exit 1
+fi
+# validate email using =~. 
+# The email domain should be northeastern, and the account is supposed to be name separated by . 
+# and can followed by one digit number
+if [[ ! $2 =~ ^[a-zA-Z]+(\.[a-zA-Z]+[0-9]*+)+@northeastern\.edu$ ]]; then
+	echo "Invalid email address"
+    exit 1
+fi
 nuid=$((10#$1))
 sc1=$(( $nuid % 19))
 echo -e "Thanks, your email is: $2, \nand your 9 programs to work with are:"

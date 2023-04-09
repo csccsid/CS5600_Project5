@@ -4,13 +4,22 @@
 
 //MACROS 
 #include<stdio.h>
+#include <stdlib.h>
 
 
 //another custom array printing an array
 void array_print(int* ptr3, int n)
 {
-    int sub;
-    for(int i=0; i<100000000; i++)
+	// varible should be initialized
+    int sub = 0;
+    // pointer should be checked before using
+    if(ptr3 == NULL)
+    {
+    	printf("Pointer cannot be NULL");
+    	return;
+    }
+    // the accessing of array cannot exceed it's boundary
+    for(int i=0; i<n; i++)
     {
         ptr3[sub] = i;
         sub=sub+1;
@@ -22,19 +31,28 @@ void array_print(int* ptr3, int n)
 
 int main(){
     // variable initializations 
-    int* ptr_to_arr;
-    int size_array;
+    // varible should be initialized
+    int* ptr_to_arr = NULL;
+    int size_array = 0;
 
     //Note for developers(students): use variables in method using defined pointers (not directly)
 
 
-
-    ptr_to_arr = (int*)malloc(sizeof(char));
+	// size of int memory should be allocted to the int variable.
+    ptr_to_arr = (int*)malloc(sizeof(int));
+    if(!ptr_to_arr)
+    {
+    	printf("Memory allocate error");
+    	return -1;
+    }
+    
     // Hint:: add and assign the references to the pointers here:
-
+	size_array = sizeof(ptr_to_arr);
 
     //function call statements
     array_print(ptr_to_arr,size_array);
+    // memory assigned in the heap need to be freed
+    free(ptr_to_arr);
     return 0;
 
 

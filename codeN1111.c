@@ -5,10 +5,23 @@
 
 void buildMatrix(unsigned int matrix_size) {
     char **square = calloc(matrix_size, sizeof(char *));
+    // check whether calloc success.
+    if(!square)
+    {
+    	printf("Memory allocate error");
+    	return;
+    }
     for (int i = 0; i < matrix_size; ++i) {
         square[i] = calloc(matrix_size, sizeof(char));
+        // check whether calloc success.
+        if(!square[i])
+        {
+        	printf("Memory allocate error");
+    		return;
+        }
     }
-    system("cls");
+    // in the linux, we should use system('clear') instead of cls
+    system("clear");
     printf("\tMatrix\n");
 
     for (int i = 0; i < matrix_size; i++) {
@@ -18,6 +31,13 @@ void buildMatrix(unsigned int matrix_size) {
             printf("  %d  |", i + j);
         }
     }
+    
+    // memory assigned in the heap need to be freed
+    for(int i = 0; i < matrix_size; ++i)
+    {
+    	free(square[i]);
+    }
+    free(square);
 }
 
 int main() {

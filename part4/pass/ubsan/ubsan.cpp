@@ -88,13 +88,17 @@ bool UBSan::runOnFunction(Function &F) {
               TODO: sign extent op1 and op2 to 64 bit
               and add the extented op together
             */
+            Value* extended_op1 = builder.CreateSExt(op1, Type::getInt64Ty(I->getContext()));
+            Value* extended_op2 = builder.CreateSExt(op2, Type::getInt64Ty(I->getContext()));
+            Value* result = builder.CreateAdd(extended_op1, extended_op2, "sum_result");
+            
             // this is the max value of 32-bit signed integer, as 64-bit signed integer.
             Value* cap = ConstantInt::get(builder.getInt64Ty(), maxIntN(32));
 
             /*
               TODO: compare if result is greater than the cap
             */
-            Instruction* check = cast<Instruction>(builder.CreateICmpSGT(,));
+            Instruction* check = cast<Instruction>(builder.CreateICmpSGT(result, cap));
 
             Instruction* splitBefore = check->getNextNode();
             Instruction *argExpressionBlock = SplitBlockAndInsertIfThen(
@@ -105,11 +109,23 @@ bool UBSan::runOnFunction(Function &F) {
               TODO: here we are at "everything is fine" basic block (i.e., right before the call to the add operat ion)
               build a call to puts function to print that everything is all right (i.e., strPtr1)
              */
+            Value *putsArgs[] = {strPtr1};
+			builder.CreateCall(PutsFunc, putsArgs);
+            
             builder.SetInsertPoint(argExpressionBlock);
             /*
             TODO: here we are at the error handling basic block, which means, according to the comparison check,
             a undefined behavior will happen, print the info (i.e., strPtr2) and call to exit function.
           */
+            
+            
+            Value *putsArgsError[] = {strPtr2};
+            builder.CreateCall(PutsFunc, putsArgsError);
+            
+            // exit
+            Value *exitCode = ConstantInt::get(builder.getInt32Ty(), 1);
+			builder.CreateCall(ExitFunc, exitCode);
+           
         }
     }
   }

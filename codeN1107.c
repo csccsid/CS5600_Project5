@@ -9,19 +9,28 @@
 
 // custom method to swap digits (without using third variable/pointer) passed to it as arguments from main()
 void swap(int *ptr1, int *ptr2) {
-    printf("Original First Number is : %d \n ", (*ptr1));
-    printf("Swapped Second Number is : %d \n ", (*ptr2));
 
     // ----------------------- Secure Coding Task -------------------------------////
     // Task 1: Implement a NULL pointer check condition (use if statment) (most important secure coding practice)
 
     // ------  add null pointer check condition Here-------
-
+	if(ptr1 == NULL || ptr2 == NULL)
+    {
+    	printf("Number cannot be NULL");
+    	return;
+    }
+    
+    // the input should be checked before using
+    printf("Original First Number is : %d \n ", (*ptr1));
+    printf("Swapped Second Number is : %d \n ", (*ptr2));
+	
     // logic for swapping
     *ptr1 = *ptr1 + *ptr2;
     //Task 2 : complete logic for swapping (Hint: required statements 2)
     //----- add logic here ------
-
+	*ptr2 = *ptr1 - *ptr2;
+	*ptr1 = *ptr1 - *ptr2;
+	
     //print statements
     printf("Swapped First Number is : %d \n", (*ptr1));
     printf("Swapped Second Number is : %d \n", (*ptr2));
@@ -38,11 +47,11 @@ int main() {
     int *ptr_to_first_number = NULL;
     int *ptr_to_second_number = NULL;
     // Hint:: add the assign the references to the pointers here:
-
+	ptr_to_first_number = &first_number;
+	ptr_to_second_number = &second_number;
 
     //function call statements
     swap(ptr_to_first_number, ptr_to_second_number);
 
     return 0;
-
 }

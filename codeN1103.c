@@ -18,13 +18,23 @@ int checkUsernameLength(char *username) {
 }
 
 int main(int argc, char **argv) {
+	// check the username argument is exist to avoid segmentation fault
+    if(argc < 2)
+    {
+    	printf("Please input username");
+    	return 1;
+    }
+    
     FILE *fp;
+
     umask(0);
     fp = fopen(USERNAME_DB, "a");
 
     switch (checkUsernameLength(argv[1])) {
         case FAILED:
             printf("Username too long");
+            // close the file stream
+            fclose(fp);
             return (0);
         case SUCCESS:
             break;
@@ -33,6 +43,8 @@ int main(int argc, char **argv) {
     if (fp) {
         fprintf(fp, "%s\n", argv[1]);
         printf("%s\n", "username added to file");
+        // close the file stream
+        fclose(fp);
     }
     return (0);
 }

@@ -1,6 +1,6 @@
 PROJ_DIR := $(abspath .)
 LLVM_PASS_PATH := $(PROJ_DIR)/../../pass/ubsan/build/libubsan.so
-LLVM_BIN_PATH := <your llvm toolchain dir here>/bin
+LLVM_BIN_PATH := /home/cs5600/CY5130/llvm/clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04/bin
 GCC_PATH := gcc
 
 all: instrumented_ub

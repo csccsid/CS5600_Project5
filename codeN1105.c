@@ -15,8 +15,9 @@ struct User usersDb[3] = {
         {.username = "userB", .password = "idMf("},
 };
 
-
-const char secret[8] = {11, 22, 44, 19, 69, 30, 90, 14};
+// Since the max length of password is 9 and the size could be 9, 
+// the secret array should contain at least 9 elements.
+const char secret[9] = {11, 22, 44, 19, 69, 30, 90, 14, 26};
 
 char *encrypt(char *toEncrypt, int size) {
     int i;
@@ -45,8 +46,10 @@ int checkValidUserName(char *username) {
 
 int checkValidPassword(char *username, char *password) {
     for (int i = 0; i < 3; i++) {
+    	// the decrypted password cannot be exposed
+    	// consequently, we should compare encrypted password
         if (strcmp(username, usersDb[i].username) == 0 &&
-            strcmp(password, decrypt(usersDb[i].password, strlen(usersDb[i].password))) == 0) {
+            strcmp(encrypt(password, strlen(password)), usersDb[i].password)) == 0) {
             return 1;
         }
     }

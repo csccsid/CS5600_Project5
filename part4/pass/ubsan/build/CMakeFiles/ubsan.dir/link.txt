@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC -Wall -fno-rtti -g -shared  -o libubsan.so CMakeFiles/ubsan.dir/ubsan.cpp.o 
